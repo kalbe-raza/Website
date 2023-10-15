@@ -68,7 +68,7 @@ app.jinja_env.filters['oneLine'] = oneLine
 app.jinja_env.filters['encode_spaces'] = encode_spaces
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///news.db"
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://default:sVWjNPJ7l8Yd@ep-snowy-breeze-45989589-pooler.us-east-1.postgres.vercel-storage.com/verceldb"
 
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("POSTGRES_MY-URL")
 
@@ -86,8 +86,8 @@ class News(db.Model):
         return f'<Book {self.title}>'
 
 
-# with app.app_context():
-#      db.create_all()
+with app.app_context():
+     db.create_all()
 
 
 @app.route('/')
