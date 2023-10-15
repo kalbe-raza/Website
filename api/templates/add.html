@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+{% from 'bootstrap4/form.html' import render_form %}
+
+{% block content %}
+<!-- Page Header -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            {{ ckeditor.load() }}
+            {{ ckeditor.config(name='body_first') }}
+            {{ ckeditor.config(name='body_second') }}
+            {{ render_form(form) }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+.align-center {
+            text-align: center;
+            padding-top: 70px;
+            padding-bottom: 50px;
+            /*border-bottom:dotted  1px black ;*/
+        }
+
+        .Title {
+            font-family: title-font;
+            font-size: 80px;
+
+
+        }
+
+        .sub-title {
+            font-family: georgia, "Times New Roman", serif;
+
+            font-size: 20px;
+
+            font-weight: 400;
+
+            color: rgb(102, 102, 102)
+        }
+
+        @font-face {
+            font-family: title-font;
+            src: url('OldLondon.ttf');
+        }
+
+        #navID {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 50;
+        }
+
+        .adjust {
+            margin-left: auto;
+            margin-right: auto;
+            padding-top : 100px;
+        }
+
+        .heading {
+            /*font-family: Postino, garamond, serif;*/
+            font-size: 34px;
+
+            color: rgb(42, 42, 42);
+        }
+
+        .image {
+            height: 400px;
+            width: 500px;
+            border-radius:5%;
+        }
+
+        .details {
+
+            font-family: Franklin, Arial, Helvetica, sans-serif;
+
+            font-size: 20px;
+
+            color: rgb(102, 102, 102 );
+
+
+        }
+
+        .top{
+            margin-bottom: 100px;
+        }
+        .underline{
+
+            border-bottom: solid 2px grey;
+            margin-top: 50px;
+            padding-bottom:50px;
+        }
+        .und2{
+            text-align: center;
+              font-weight: bold;
+
+        }
+        .und2:hover{
+            text-decoration: underline;
+
+        }
+
+        .butn{
+       position:absolute;
+       bottom:0;
+       left:20%;
+       width:55%;
+
+       }
+
+      #mover{
+      height:40px;
+  position: fixed;
+  left: 0;
+  top: 60px;
+  width: 100%;
+  background-color: #43658b;
+  color: white;
+  text-align: center;
+  font-size:24px;
+  z-index:100;
+}
+
+.marquee-container {
+    width: 100vw;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee {
+    padding-left: 100vw;
+    display: inline-block;
+    animation: marquee 15s linear infinite;
+    animation-play-state: running;
+    font-size:27px;
+}
+
+.marquee.paused, .marquee-container:hover .marquee {
+    animation-play-state: paused;
+}
+
+.marquee a{
+    text-decoration:none;
+    color:white;
+}
+.marquee a:hover{
+    text-decoration:none;
+    color:black;
+}
+@keyframes marquee {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-100%);
+    }
+}
+
+ /*@font-face {
+      font-family: smallCardText-font;
+       src: url('OldLo.ttf');
+  }*/
+  .smallCardText{
+
+    font-family:title-font;
+    font-weight :bold;
+  }
