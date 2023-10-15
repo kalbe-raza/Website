@@ -68,7 +68,7 @@ app.jinja_env.filters['oneLine'] = oneLine
 app.jinja_env.filters['encode_spaces'] = encode_spaces
 
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("POSTGRES_MY-URL")
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("POSTGRES_MY_URL")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
