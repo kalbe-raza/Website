@@ -69,7 +69,11 @@ app.jinja_env.filters['encode_spaces'] = encode_spaces
 
 
 
+<<<<<<< HEAD
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///news.db"
+=======
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("POSTGRES_MY-URL")
+>>>>>>> 38173f4 (Change Database)
 db = SQLAlchemy()
 db.init_app(app)
 
