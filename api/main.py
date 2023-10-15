@@ -92,8 +92,8 @@ class News(db.Model):
 
 @app.route('/')
 def home():
-    result = db.session.execute(db.select(News).order_by(News.time.desc()))
-    all_news = result.scalars().all()
+    # result = db.session.execute(db.select(News).order_by(News.time.desc()))
+    # all_news = result.scalars().all()
     return render_template("index.html" , all_news = all_news)
 
 @app.route('/post/<int:ID>')
