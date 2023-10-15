@@ -143,30 +143,30 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script>
-    const content = [
-        '{{all_news[0].title}}',
-        '{{all_news[1].title}}',
-        '{{all_news[2].title}}'
-    ];
-    const links = [
-        '{{ url_for("post" , ID = all_news[0].id ) }}',
-        '{{ url_for("post" , ID = all_news[1].id ) }}',
-        '{{ url_for("post" , ID = all_news[2].id ) }}'
-    ];
-    let key = 0;
-    const marquee = $('.marquee');
-    marquee.on('animationstart', () => {
-        key = 0;
-        marquee.html(`<a href="${links[key]}">${content[key]}</a>`);
-    });
-    marquee.on('animationiteration', () => {
-        key++;
-        if (typeof content[key] === 'undefined') key = 0;
-        marquee.html(`<a href="${links[key]}">${content[key]}</a>`);
-    });
-    marquee.removeClass('paused');
-</script>
+<!--<script>-->
+<!--    const content = [-->
+<!--        '{{all_news[0].title}}',-->
+<!--        '{{all_news[1].title}}',-->
+<!--        '{{all_news[2].title}}'-->
+<!--    ];-->
+<!--    const links = [-->
+<!--        '{{ url_for("post" , ID = all_news[0].id ) }}',-->
+<!--        '{{ url_for("post" , ID = all_news[1].id ) }}',-->
+<!--        '{{ url_for("post" , ID = all_news[2].id ) }}'-->
+<!--    ];-->
+<!--    let key = 0;-->
+<!--    const marquee = $('.marquee');-->
+<!--    marquee.on('animationstart', () => {-->
+<!--        key = 0;-->
+<!--        marquee.html(`<a href="${links[key]}">${content[key]}</a>`);-->
+<!--    });-->
+<!--    marquee.on('animationiteration', () => {-->
+<!--        key++;-->
+<!--        if (typeof content[key] === 'undefined') key = 0;-->
+<!--        marquee.html(`<a href="${links[key]}">${content[key]}</a>`);-->
+<!--    });-->
+<!--    marquee.removeClass('paused');-->
+<!--</script>-->
 
 
 </body>
