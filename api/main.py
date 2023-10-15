@@ -70,7 +70,7 @@ app.jinja_env.filters['encode_spaces'] = encode_spaces
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///news.db"
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("POSTGRES_MY-URL")
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("POSTGRES_MY-URL")
 
 db = SQLAlchemy()
 db.init_app(app)
@@ -86,8 +86,8 @@ class News(db.Model):
         return f'<Book {self.title}>'
 
 
-with app.app_context():
-     db.create_all()
+# with app.app_context():
+#      db.create_all()
 
 
 @app.route('/')
