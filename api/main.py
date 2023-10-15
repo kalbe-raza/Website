@@ -69,10 +69,10 @@ app.jinja_env.filters['encode_spaces'] = encode_spaces
 
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://default:sVWjNPJ7l8Yd@ep-snowy-breeze-45989589-pooler.us-east-1.postgres.vercel-storage.com/verceldb"
-
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("POSTGRES_MY-URL")
 
-db = SQLAlchemy()
+db = SQLAlchemy(app)
 # db.init_app(app)
 
 class News(db.Model):
