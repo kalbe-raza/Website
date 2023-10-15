@@ -75,29 +75,29 @@
     </div>
 
 
-<!--    {% for news in all_news%}-->
-<!--        {%if loop.index>3%}-->
-<!--         <div class="col col-12 col-md-10 adjust underline ">-->
+    {% for news in all_news%}
+        {%if loop.index>3%}
+         <div class="col col-12 col-md-10 adjust underline ">
 
-<!--            <div class="row">-->
-<!--                <div class="col col-12 col-md-7 col-sm-12 order-2 order-md-1 order-sm-1">-->
-<!--                    <h3 class="heading"> <b>{{news.title}}</b></h3>-->
-<!--                    <br>-->
-<!--                    <p class="details">{{ news.body_first|subtitle | safe }}</p>-->
+            <div class="row">
+                <div class="col col-12 col-md-7 col-sm-12 order-2 order-md-1 order-sm-1">
+                    <h3 class="heading"> <b>{{news.title}}</b></h3>
+                    <br>
+                    <p class="details">{{ news.body_first|subtitle | safe }}</p>
 
-<!--           <br><br> <a  type="button" class="btn btn-dark butn" href="{{ url_for('post' , ID = news.id ) }}">SEEMORE</a>-->
-
-
-<!--                </div>-->
-<!--                <div class="col col-12 col-md-3 col-sm-12 order-1 order-md-2 order-sm-2 ">-->
-<!--&lt;!&ndash;                    <img class="image" src="{{url_for('static', filename='files/' + news.title|encode_spaces + '.png')}}">&ndash;&gt;-->
-<!--                </div>-->
-<!--            </div>-->
+           <br><br> <a  type="button" class="btn btn-dark butn" href="{{ url_for('post' , ID = news.id ) }}">SEEMORE</a>
 
 
-<!--        </div>-->
-<!--        {%endif%}-->
-<!--    {%endfor%}-->
+                </div>
+                <div class="col col-12 col-md-3 col-sm-12 order-1 order-md-2 order-sm-2 ">
+                    <img class="image" src="{{url_for('static', filename='files/' + news.title|encode_spaces + '.png')}}">
+                </div>
+            </div>
+
+
+        </div>
+        {%endif%}
+    {%endfor%}
 
     <div class="top"></div>
 
@@ -143,30 +143,30 @@
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!--<script>-->
-<!--    const content = [-->
-<!--        '{{all_news[0].title}}',-->
-<!--        '{{all_news[1].title}}',-->
-<!--        '{{all_news[2].title}}'-->
-<!--    ];-->
-<!--    const links = [-->
-<!--        '{{ url_for("post" , ID = all_news[0].id ) }}',-->
-<!--        '{{ url_for("post" , ID = all_news[1].id ) }}',-->
-<!--        '{{ url_for("post" , ID = all_news[2].id ) }}'-->
-<!--    ];-->
-<!--    let key = 0;-->
-<!--    const marquee = $('.marquee');-->
-<!--    marquee.on('animationstart', () => {-->
-<!--        key = 0;-->
-<!--        marquee.html(`<a href="${links[key]}">${content[key]}</a>`);-->
-<!--    });-->
-<!--    marquee.on('animationiteration', () => {-->
-<!--        key++;-->
-<!--        if (typeof content[key] === 'undefined') key = 0;-->
-<!--        marquee.html(`<a href="${links[key]}">${content[key]}</a>`);-->
-<!--    });-->
-<!--    marquee.removeClass('paused');-->
-<!--</script>-->
+<script>
+    const content = [
+        '{{all_news[0].title}}',
+        '{{all_news[1].title}}',
+        '{{all_news[2].title}}'
+    ];
+    const links = [
+        '{{ url_for("post" , ID = all_news[0].id ) }}',
+        '{{ url_for("post" , ID = all_news[1].id ) }}',
+        '{{ url_for("post" , ID = all_news[2].id ) }}'
+    ];
+    let key = 0;
+    const marquee = $('.marquee');
+    marquee.on('animationstart', () => {
+        key = 0;
+        marquee.html(`<a href="${links[key]}">${content[key]}</a>`);
+    });
+    marquee.on('animationiteration', () => {
+        key++;
+        if (typeof content[key] === 'undefined') key = 0;
+        marquee.html(`<a href="${links[key]}">${content[key]}</a>`);
+    });
+    marquee.removeClass('paused');
+</script>
 
 
 </body>

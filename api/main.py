@@ -29,8 +29,9 @@ app = Flask(__name__)
 
 
 app.config['SECRET_KEY'] = "abcd"
-app.config['UPLOAD_FOLDER'] = "api/static/files"
-app.config['UPLOAD_VIDEO'] = "api/static/video"
+
+app.config['UPLOAD_FOLDER'] = url_for("static", filename='files')
+app.config['UPLOAD_VIDEO'] = url_for("static", filename='video')
 ckeditor = CKEditor(app)
 bootstrap = Bootstrap(app)
 
@@ -92,9 +93,9 @@ class News(db.Model):
 
 @app.route('/')
 def home():
-    # result = db.session.execute(db.select(News).order_by(News.time.desc()))
-    # all_news = result.scalars().all()
-    return render_template("index.html" , all_news = [])
+    result = db.session.execute(db.select(News).order_by(News.time.desc()))
+    all_news = result.scalars().all()
+    return render_template("index.html" , all_news = all_news)
 
 @app.route('/post/<int:ID>')
 def post(ID):
@@ -125,10 +126,10 @@ def add():
         )
         image = form.image.data
         name = encode_spaces(form.title.data)
-        # image.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(name+".png")))
+        image.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(name+".png")))
 
         video = form.video.data
-        # video.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_VIDEO'],secure_filename(name+".mp4")))
+        video.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_VIDEO'],secure_filename(name+".mp4")))
 
         db.session.add(news)
         db.session.commit()
