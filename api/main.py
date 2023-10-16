@@ -30,8 +30,8 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = "abcd"
 
-app.config['UPLOAD_FOLDER'] = "api/static/files"
-app.config['UPLOAD_VIDEO'] = "api/static/video"
+app.config['UPLOAD_FOLDER'] = "static/files"
+app.config['UPLOAD_VIDEO'] = "static/video"
 ckeditor = CKEditor(app)
 bootstrap = Bootstrap(app)
 
