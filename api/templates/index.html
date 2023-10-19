@@ -76,7 +76,7 @@
 
 
     {% for news in all_news%}
-        {%if loop.index>3%}
+        {%if loop.index%}
          <div class="col col-12 col-md-10 adjust underline ">
 
             <div class="row">
@@ -90,7 +90,8 @@
 
                 </div>
                 <div class="col col-12 col-md-3 col-sm-12 order-1 order-md-2 order-sm-2 ">
-                    <img class="image" src="{{url_for('static', filename='files/' + news.title|encode_spaces + '.png')}}">
+<!--                    <img class="image" src="{{url_for('static', filename='files/' + news.title|encode_spaces + '.png')}}">-->
+                        <img class="image" src="data:image/png;base64, {{ news.image_data_base64 }}" alt="{{ news.title }}">
                 </div>
             </div>
 
@@ -100,36 +101,7 @@
     {%endfor%}
 
     <div class="top"></div>
-
-<!--    <div class="col col-12 col-md-10 col-sm-12 adjust top">-->
-
-
-<!--          <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">-->
-<!--              <div class="carousel-inner">-->
-<!--                  <div class="carousel-item active">-->
-<!--                      <img  src="{{url_for('static', filename='files/10th.png')}}" class="d-block w-100" alt="...">-->
-<!--                  </div>-->
-<!--                  <div class="carousel-item">-->
-<!--                      <img src="{{url_for('static', filename='files/9th.png')}}" class="d-block w-100" alt="...">-->
-<!--                  </div>-->
-<!--                  <div class="carousel-item">-->
-<!--                      <img src="{{url_for('static', filename='files/8th.png')}}" class="d-block w-100" alt="...">-->
-<!--                  </div>-->
-<!--              </div>-->
-<!--              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying"-->
-<!--                      data-bs-slide="prev">-->
-<!--                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
-<!--                  <span class="visually-hidden">Previous</span>-->
-<!--              </button>-->
-<!--              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying"-->
-<!--                      data-bs-slide="next">-->
-<!--                  <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
-<!--                  <span class="visually-hidden">Next</span>-->
-<!--              </button>-->
-<!--          </div>&ndash;&gt;-->
-
-
-    </div>
+ </div>
 
 
 </div>
