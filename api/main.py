@@ -10,6 +10,8 @@ from wtforms.validators import DataRequired, URL, Email, Length
 from flask_ckeditor import CKEditorField ,  CKEditor
 from werkzeug.utils import secure_filename
 import os
+import re
+import base64
 
 
 class CreatePostForm(FlaskForm):
@@ -30,8 +32,7 @@ app = Flask(__name__)
 
 app.config['SECRET_KEY'] = "abcd"
 
-app.config['UPLOAD_FOLDER'] = "api/static/files"
-app.config['UPLOAD_VIDEO'] = "api/static/video"
+
 ckeditor = CKEditor(app)
 bootstrap = Bootstrap(app)
 
@@ -55,18 +56,9 @@ def oneLine(text):
     return ' '.join(words[:3]) + '...'
 
 import urllib.parse
-def encode_spaces(title):
-    # Encode the title to create a safe filename
-    #encoded_name = urllib.parse.quote(title)
-    name = title.replace(' ','1')
-    name = name.replace('?' ,'2')
-    name = name.replace("'" , '3')
-    name = name.replace("," , '4')
-    return name
 
 app.jinja_env.filters['subtitle'] = subtitle
 app.jinja_env.filters['oneLine'] = oneLine
-app.jinja_env.filters['encode_spaces'] = encode_spaces
 
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("POSTGRES_MY_URL")
@@ -82,6 +74,8 @@ class News(db.Model):
     body_first = db.Column(db.String(250), nullable=False)
     body_second = db.Column(db.String(250) ,  nullable=False)
     # image = db.Column(db.String(250) , nullable = False)
+    image_data = db.Column(db.LargeBinary)
+    video_data = db.Column(db.LargeBinary)
     time = db.Column(db.DateTime, nullable=False , default = datetime.utcnow)
     def __repr__(self):
         return f'<Book {self.title}>'
@@ -95,12 +89,61 @@ class News(db.Model):
 def home():
     result = db.session.execute(db.select(News).order_by(News.time.desc()))
     all_news = result.scalars().all()
+    for news in all_news:
+        if news.image_data:
+            news.image_data_base64 = base64.b64encode(news.image_data).decode('utf-8')
+        else:
+            news.image_data_base64 = None
+
     return render_template("index.html" , all_news = all_news)
+
+@app.route('/KalbeAli/KalbeRaza/add' , methods=["POST" , "GET"])
+def add():
+    form = CreatePostForm()
+
+    if form.validate_on_submit():
+        news = News(
+            title=form.title.data,
+            body_first=form.body_first.data,
+            body_second=form.body_second.data
+        )
+        if 'image' in request.files:
+            image = request.files['image']
+            if image:
+                image_data = image.read()
+                news.image_data = image_data  # Assuming you have an "image_data" field in your News model
+
+        if 'video' in request.files:
+            video = request.files['video']
+            if video:
+                video_data = video.read()
+                news.video_data = video_data
+        # name = encode_spaces(form.title.data)
+
+        # image.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(name+".png")))
+        #
+        # video = form.video.data
+        # video.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_VIDEO'],secure_filename(name+".mp4")))
+
+        db.session.add(news)
+        db.session.commit()
+        return redirect(url_for("success"))
+
+    return render_template("add.html", form=form)
 
 @app.route('/post/<int:ID>')
 def post(ID):
     result = db.session.execute(db.select(News).order_by(News.time.desc()))
     all_news = result.scalars().all()
+    for news in all_news:
+        if news.image_data:
+            news.image_data_base64 = base64.b64encode(news.image_data).decode('utf-8')
+        else:
+            news.image_data_base64 = None
+        if news.video_data:
+            news.video_data_base64 = base64.b64encode(news.video_data).decode('utf-8')
+        else:
+            news.video_data_base64 = None
     new = News.query.get(ID)
     i=0
     j=1
@@ -113,30 +156,6 @@ def post(ID):
         k=3
     marquee_news = [all_news[i],all_news[j],all_news[k]]
     return render_template("post.html" , current_news = new , marquee_news=marquee_news , all_news = all_news)
-
-@app.route('/KalbeAli/KalbeRaza/add' , methods=["POST" , "GET"])
-def add():
-    form = CreatePostForm()
-
-    if form.validate_on_submit():
-        news = News(
-            title=form.title.data,
-            body_first=form.body_first.data,
-            body_second=form.body_second.data
-        )
-        image = form.image.data
-        name = encode_spaces(form.title.data)
-        image.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(name+".png")))
-
-        video = form.video.data
-        video.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_VIDEO'],secure_filename(name+".mp4")))
-
-        db.session.add(news)
-        db.session.commit()
-        return redirect(url_for("success"))
-
-    return render_template("add.html", form=form)
-
 
 
 
