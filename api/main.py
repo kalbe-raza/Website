@@ -81,8 +81,8 @@ class News(db.Model):
         return f'<Book {self.title}>'
 
 
-# with app.app_context():
-#      db.create_all()
+with app.app_context():
+     db.create_all()
 
 
 @app.route('/')
