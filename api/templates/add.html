@@ -6,7 +6,7 @@
 </head>
 <body>
 
-{% from 'bootstrap/wtf.html' import quick_form, form_field %}
+{% from 'bootstrap4/form.html' import render_form %}
 
 {% block content %}
 <!-- Page Header -->
@@ -16,7 +16,7 @@
             {{ ckeditor.load() }}
             {{ ckeditor.config(name='body_first') }}
             {{ ckeditor.config(name='body_second') }}
-            {{ quick_form(form) }}
+            {{ render_form(form) }}
         </div>
     </div>
 </div>
