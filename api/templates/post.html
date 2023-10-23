@@ -106,12 +106,8 @@
         <div class="row">
             <div class="col col-12 col-md-12 col-sm-12 ">
                 <div class="news-card">
-                    <!--                <img src="{{url_for('static', filename='files/' + current_news.title | encode_spaces + '.png')}}"-->
-                    <!--                     class="news-image">-->
                     <img class="news-image" src="data:image/png;base64, {{ current_news.image_data_base64 }}"
                          alt="{{ current_news.title }}">
-
-                    </img>
                     <h2 class="news-title">{{current_news.title}}</h2>
                     <p class="news-date">Published on August 14, 2023</p>
                     <p class="news-content">
@@ -120,7 +116,6 @@
 
                     {% if current_news.video_data_base64 %}
                     <video width="100%" height="500px;" controls>
-                        <!--                    <source src="{{url_for('static', filename='video/' + current_news.title|encode_spaces + '.mp4')}}" type="video/mp4">-->
                         <source src="data:video/mp4;base64, {{ current_news.video_data_base64 }}" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
@@ -142,8 +137,6 @@
             {% if (news != current_news) and (loop.index>3) %}
             <div class="col col-5 col-md-12 col-sm-5 " style="margin-left:30px;">
                 <a href='{{ url_for("post" , ID = news.id ) }}'>
-                    <!--                             <img src="{{url_for('static', filename='files/' + news.title | encode_spaces + '.png')}}"-->
-                    <!--                             class="side-image">-->
                     <img class="side-image" src="data:image/png;base64, {{ news.image_data_base64 }}"
                          alt="{{ news.title }}">
 
