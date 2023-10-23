@@ -66,7 +66,7 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
 db = SQLAlchemy(app)
-db.init_app(app)
+# db.init_app(app)
 
 class News(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -81,8 +81,8 @@ class News(db.Model):
         return f'<Book {self.title}>'
 
 
-with app.app_context():
-     db.create_all()
+# with app.app_context():
+#      db.create_all()
 
 
 @app.route('/')
