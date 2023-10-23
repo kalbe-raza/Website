@@ -67,43 +67,131 @@
 </div>
 
 
+<!--<div class="row top" style="position: relative; margin-top:100px;">-->
+<!--    <div class="container mt-5">-->
+<!--        <div class="carousel-container">-->
+<!--            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2200"-->
+<!--                 data-bs-pause="hover">-->
+<!--                <ul style="list-style-type: none;" class="carousel-indicators">-->
+<!--                    <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>-->
+<!--                    <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>-->
+<!--                    <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>-->
+<!--                </ul>-->
+<!--                <div class="carousel-inner">-->
+<!--                    {%for i in range(0,3)%}-->
+<!--                    <div class="carousel-item active">-->
+<!--                        <a class="carousel-img d-block w-100"-->
+<!--                           style="background-image: url('data:image/png;base64, {{ all_news[0].image_data_base64 }}');"-->
+<!--                           alt="Slide 1"-->
+<!--                           href="#">-->
+<!--                        </a>-->
+<!--                        <a class="carousel-text" href="#">-->
+<!--                            <p>{{all_news[i].title}}</p>-->
+<!--                        </a>-->
+<!--                    </div>-->
+<!--                    {%endfor%}-->
 
-<div class="row top" style="margin-top:50px;">
+<!--                </div>-->
+
+<!--                <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev"-->
+<!--                   style="left: -140px;">-->
+<!--                    <span class="prev-icon" aria-hidden="true">&#x2B98;</span>-->
+<!--                    <span class="visually-hidden">Previous</span>-->
+<!--                </a>-->
+<!--                <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next"-->
+<!--                   style="right: -130px;">-->
+<!--                    <span class="next-icon" aria-hidden="true">&#x2B9A;</span>-->
+<!--                    <span class="visually-hidden">Next</span>-->
+<!--                </a>-->
+
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    <div class="content"-->
+<!--         style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;">-->
+<!--        <div class="col col-12 col-sm-12 col-md-12  align-center">-->
+<!--            <h1 class="Title">TELLIT NEWS</h1>-->
+<!--            <h3 class="sub-title" style="color: red;">democracy dies in darkness</h3>-->
+<!--        </div>-->
+<!--    </div>-->
+
+
+<div class="row top" style="margin-top:50px; ">
     <div class="col col-12 col-sm-12 col-md-12  align-center ">
         <h1 class="Title">TELLIT NEWS</h1>
         <h3 class="sub-title">democracy dies in darkess</h3>
     </div>
 
 
-    {% for news in all_news%}
-        {%if loop.index%}
-         <div class="col col-12 col-md-10 adjust underline ">
-
-            <div class="row">
-                <div class="col col-12 col-md-7 col-sm-12 order-2 order-md-1 order-sm-1">
-                    <h3 class="heading"> <b>{{news.title}}</b></h3>
-                    <br>
-                    <p class="details">{{ news.body_first|subtitle | safe }}</p>
-
-           <br><br> <a  type="button" class="btn btn-dark butn" href="{{ url_for('post' , ID = news.id ) }}">SEEMORE</a>
-
+    <div class="container mt-5">
+        <div class="carousel-container">
+            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="2200"
+                 data-bs-pause="hover">
+                <ul style="list-style-type: none;" class="carousel-indicators">
+                    <li data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"></li>
+                    <li data-bs-target="#myCarousel" data-bs-slide-to="1"></li>
+                    <li data-bs-target="#myCarousel" data-bs-slide-to="2"></li>
+                </ul>
+                <div class="carousel-inner">
+                    {%for i in range(0,3)%}
+                    <div class="carousel-item active">
+                        <a class="carousel-img d-block w-100"
+                           style="background-image: url('data:image/png;base64, {{ all_news[0].image_data_base64 }}');"
+                           alt="Slide 1"
+                           href="#">
+                        </a>
+                        <a class="carousel-text" href="#">
+                            <p>{{all_news[i].title}}</p>
+                        </a>
+                    </div>
+                    {%endfor%}
 
                 </div>
-                <div class="col col-12 col-md-3 col-sm-12 order-1 order-md-2 order-sm-2 ">
-<!--                    <img class="image" src="{{url_for('static', filename='files/' + news.title|encode_spaces + '.png')}}">-->
-                        <img class="image" src="data:image/png;base64, {{ news.image_data_base64 }}" alt="{{ news.title }}">
-                </div>
+
+                <a class="carousel-control-prev" href="#myCarousel" role="button" data-bs-slide="prev"
+                   style="left: -140px;">
+                    <span class="prev-icon" aria-hidden="true">&#x2B98;</span>
+                    <span class="visually-hidden">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#myCarousel" role="button" data-bs-slide="next"
+                   style="right: -130px;">
+                    <span class="next-icon" aria-hidden="true">&#x2B9A;</span>
+                    <span class="visually-hidden">Next</span>
+                </a>
+
             </div>
-
-
         </div>
-        {%endif%}
+    </div>
+
+
+    {% for news in all_news%}
+    {%if loop.index > 5%}
+    <div class="col col-12 col-md-10 adjust underline ">
+
+        <div class="row">
+            <div class="col col-12 col-md-7 col-sm-12 order-2 order-md-1 order-sm-1">
+                <h3 class="heading"><b>{{news.title}}</b></h3>
+                <br>
+                <p class="details">{{ news.body_first|subtitle | safe }}</p>
+
+                <br><br> <a type="button" class="btn btn-dark butn"
+                            href="{{ url_for('post' , ID = news.id ) }}">SEEMORE</a>
+
+
+            </div>
+            <div class="col col-12 col-md-3 col-sm-12 order-1 order-md-2 order-sm-2 ">
+                <!--                    <img class="image" src="{{url_for('static', filename='files/' + news.title|encode_spaces + '.png')}}">-->
+                <img class="image" src="data:image/png;base64, {{ news.image_data_base64 }}" alt="{{ news.title }}">
+            </div>
+        </div>
+
+
+    </div>
+    {%endif%}
     {%endfor%}
 
     <div class="top"></div>
- </div>
-
-
 </div>
 
 <!-- Bootstrap JS (Optional) -->
@@ -111,7 +199,6 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
