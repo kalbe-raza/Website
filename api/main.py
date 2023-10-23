@@ -118,12 +118,6 @@ def add():
             if video:
                 video_data = video.read()
                 news.video_data = video_data
-        # name = encode_spaces(form.title.data)
-
-        # image.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_FOLDER'],secure_filename(name+".png")))
-        #
-        # video = form.video.data
-        # video.save(os.path.join(os.path.abspath(os.path.dirname(__file__)),app.config['UPLOAD_VIDEO'],secure_filename(name+".mp4")))
 
         db.session.add(news)
         db.session.commit()
